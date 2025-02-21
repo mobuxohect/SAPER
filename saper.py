@@ -5,6 +5,7 @@ class Cell:
         self.around_mines = around_mines
         self.mine = mine
         self.fl_open = fl_open
+        self.flag = flag
 
     def open(self):
         self.fl_open = True
@@ -82,14 +83,14 @@ class GamePole:
         self.pole = [[Cell() for _ in range(self.N)] for __ in range(self.N)]
         self.generate_mines()
 
-    def show(self):
-        for row in self.pole:
-            for cell in row:
-                if not cell.fl_open:
-                    print('#', end='')
-                else:
-                    if cell.mine:
-                        print('M', end='')
-                    else:
-                        print(cell.around_mines, end='')
-            print()
+    # def show(self):
+    #     for row in self.pole:
+    #         for cell in row:
+    #             if not cell.fl_open:
+    #                 print('#', end='')
+    #             else:
+    #                 if cell.mine:
+    #                     print('M', end='')
+    #                 else:
+    #                     print(cell.around_mines, end='')
+    #         print()

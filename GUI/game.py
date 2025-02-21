@@ -1,26 +1,33 @@
 import pygame as pg
 import sys
-import saper
 from pygame.color import THECOLORS
 
 pg.init()
+
 
 screen = pg.display.set_mode((294, 362))
 screen.fill(THECOLORS['whitesmoke'])
 pg.display.set_caption('SAPER')
 
-bg_rect = pg.Rect(4, 4, 286, 354)
+with open('D:/PyCharmPr/SAPER/GUI/borders.txt', encoding='utf-8') as const:
+    const_list = const.readlines()
+    ### NE TROGATb SLOVAR
+    BORDERS = {s[:s.find('=')].rstrip(): int(s[s.find('= '):].lstrip('= ')) for s in const_list} ### polny pizdec
+    ### NE TROGATb SLOVAR
+    inner = BORDERS['inner']
+    outer = BORDERS['outer']
+
+bg_rect = pg.Rect(outer, outer, 286, 354)
 pg.draw.rect(screen, THECOLORS['grey76'], bg_rect)
 
-upper_stats_bar = pg.Rect(12, 12, 270, 60)
+upper_stats_bar = pg.Rect(outer+inner, outer+inner, 270, 60)
 pg.draw.rect(screen, THECOLORS['grey60'], upper_stats_bar)
 
-pole_rect = pg.Rect(12, 12+60+8, 270, 270)
+pole_rect = pg.Rect(outer+inner, outer+inner+inner+60, 270, 270)
 pg.draw.rect(screen, THECOLORS['grey60'], pole_rect)
 
 
 running = True
-
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT:

@@ -86,7 +86,7 @@ class GamePole:
                     print('#', end='')
                 else:
                     if cell.mine:
-                        print(M, end='')
+                        print('M', end='')
                     else:
                         print(cell.around_mines, end='')
             print()

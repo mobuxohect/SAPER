@@ -1,6 +1,8 @@
 import pygame as pg
 import sys
 from pygame.color import THECOLORS
+import saper
+
 
 pg.init()
 
@@ -26,6 +28,12 @@ pg.draw.rect(screen, THECOLORS['grey60'], upper_stats_bar)
 pole_rect = pg.Rect(outer+inner, outer+inner+inner+60, 270, 270)
 pg.draw.rect(screen, THECOLORS['grey60'], pole_rect)
 
+# FIXME
+# POLE_GAME = saper.GamePole(9, 10)
+# for i in range(len(POLE_GAME.pole)):
+#     for j in range(len(POLE_GAME.pole[i])):
+#         cell = pg.Rect((outer+inner), 30, 30)
+#         pg.draw.rect(screen, THECOLORS['black'], cell)
 
 running = True
 while running:

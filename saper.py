@@ -1,13 +1,16 @@
 import random as r
 
 class Cell:
-    def __init__(self, around_mines=0, mine=False, fl_open=False):
+    def __init__(self, around_mines=0, mine=False, fl_open=False, flag=False):
         self.around_mines = around_mines
         self.mine = mine
         self.fl_open = fl_open
 
     def open(self):
         self.fl_open = True
+
+    def mark_mine(self):
+        self.flag = True
 
 class GamePole:
     def __init__(self, N, M):
@@ -90,6 +93,3 @@ class GamePole:
                     else:
                         print(cell.around_mines, end='')
             print()
-
-pole_game = GamePole(10, 12)
-pole_game.show()

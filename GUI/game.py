@@ -13,11 +13,12 @@ pg.display.set_caption('SAPER')
 
 with open('D:/PyCharmPr/SAPER/GUI/borders.txt', encoding='utf-8') as const:
     const_list = const.readlines()
-    ### NE TROGATb SLOVAR
-    BORDERS = {s[:s.find('=')].rstrip(): int(s[s.find('= '):].lstrip('= ')) for s in const_list} ### polny pizdec
-    ### NE TROGATb SLOVAR
-    inner = BORDERS['inner']
-    outer = BORDERS['outer']
+
+### NE TROGATb SLOVARb
+BORDERS = {s[:s.find('=')].rstrip(): int(s[s.find('= '):].lstrip('= ')) for s in const_list} ### polny pizdec
+### NE TROGATb SLOVARb
+inner = BORDERS['inner']
+outer = BORDERS['outer']
 
 bg_rect = pg.Rect(outer, outer, 286, 354)
 pg.draw.rect(screen, THECOLORS['grey76'], bg_rect)
@@ -42,4 +43,4 @@ while running:
             running = False
             pg.quit()
             sys.exit()
-    pg.display.flip()
+    pg.display.update()

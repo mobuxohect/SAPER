@@ -1,7 +1,9 @@
 import random as r
 
 class Cell:
-    def __init__(self, around_mines=0, mine=False, fl_open=False, flag=False):
+    def __init__(self, x, y, around_mines=0, mine=False, fl_open=True, flag=False):
+        self.x = x
+        self.y = y
         self.around_mines = around_mines
         self.mine = mine
         self.fl_open = fl_open
@@ -37,7 +39,7 @@ class GamePole:
                         self.pole[i][j].around_mines = mines
 
     def init(self):
-        self.pole = [[Cell() for _ in range(self.N)] for __ in range(self.N)]
+        self.pole = [[Cell(i, j) for j in range(self.N)] for i in range(self.N)]
         self.generate_mines()
 
     def show(self):
@@ -52,5 +54,5 @@ class GamePole:
                         print(cell.around_mines, end=' ')
             print()
 
-pole_game = GamePole(10, 12)
+pole_game = GamePole(9, 10)
 pole_game.show()

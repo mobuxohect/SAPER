@@ -2,23 +2,16 @@ import pygame as pg
 import sys
 from pygame.color import THECOLORS
 import saper
-
+import settings
 
 pg.init()
 
-
-screen = pg.display.set_mode((294, 362))
+screen = pg.display.set_mode((settings.GameSettings.screen_height, settings.GameSettings.screen_width))
 screen.fill(THECOLORS['whitesmoke'])
 pg.display.set_caption('SAPER')
 
-with open('D:/PyCharmPr/SAPER/GUI/borders.txt', encoding='utf-8') as const:
-    const_list = const.readlines()
-
-### NE TROGATb SLOVARb
-BORDERS = {s[:s.find('=')].rstrip(): int(s[s.find('= '):].lstrip('= ')) for s in const_list} ### polny pizdec
-### NE TROGATb SLOVARb
-inner = BORDERS['inner']
-outer = BORDERS['outer']
+outer = settings.GameSettings.BORDERS['outer']
+inner = settings.GameSettings.BORDERS['inner']
 
 bg_rect = pg.Rect(outer, outer, 286, 354)
 pg.draw.rect(screen, THECOLORS['grey76'], bg_rect)
@@ -26,15 +19,18 @@ pg.draw.rect(screen, THECOLORS['grey76'], bg_rect)
 upper_stats_bar = pg.Rect(outer+inner, outer+inner, 270, 60)
 pg.draw.rect(screen, THECOLORS['grey60'], upper_stats_bar)
 
-pole_rect = pg.Rect(outer+inner, outer+inner+inner+60, 270, 270)
+pole_rect = pg.Rect(outer+inner-2, outer+inner+inner+58, 274, 274)
 pg.draw.rect(screen, THECOLORS['grey60'], pole_rect)
 
-# FIXME
-# POLE_GAME = saper.GamePole(9, 10)
-# for i in range(len(POLE_GAME.pole)):
-#     for j in range(len(POLE_GAME.pole[i])):
-#         cell = pg.Rect((outer+inner), 30, 30)
-#         pg.draw.rect(screen, THECOLORS['black'], cell)
+gp_00_coords = {'x': outer+inner,
+                'y': outer+inner*2+60}
+
+POLE = saper.GamePole(settings.GameSettings.POLE_N, settings.GameSettings.MINES)
+POLE.init()
+for line in POLE.pole:
+    for cell in line:
+        cell_rect = pg.Rect(gp_00_coords['x']+(cell.x*30), gp_00_coords['y']+(cell.y*30), 30, 30)
+        pg.draw.rect(screen, THECOLORS['grey88'], cell_rect, width=2)
 
 running = True
 while running:

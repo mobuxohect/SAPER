@@ -7,3 +7,5 @@ class GameSettings:
 
     BORDERS = {'outer': 4,
                'inner': 8}
+
+    ONE_CELL = 30
